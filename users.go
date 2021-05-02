@@ -251,14 +251,13 @@ type UserStatus struct {
 	Patron    bool   `json:"patron"`
 }
 
-func (c *Client) GetRLUsersStatus(ids string) (*[]UserStatus, error) {
+func (c *Client) GetRLUsersStatus(ids interface{}) (*[]UserStatus, error) {
 	req, err := c.newRequest("GET", "/api/users/status", nil)
 
 	q := req.URL.Query()
-	q.Add("ids", ids)
+	q.Add("ids", fetchIds(ids))
 	req.URL.RawQuery = q.Encode()
 
-	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
 	users_status := new([]UserStatus)
 	_, err = c.do(req, &users_status)
 	if err != nil {
