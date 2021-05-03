@@ -44,7 +44,9 @@ func (c *Client) ExportGame(game_id string) (*Game, error) {
 
 func (c *Client) ExportOngoingGameOfUser(user_id string) (*Game, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s/current-game", user_id), nil)
-
+	if err != nil {
+		return nil, err
+	}
 	game := new(Game)
 	_, err = c.do(req, &game)
 	if err != nil {
@@ -77,7 +79,9 @@ type OngoingGames struct {
 
 func (c *Client) OngoingGames() (*[]OngoingGame, error) {
 	req, err := c.newRequest("GET", "/api/account/playing", nil)
-
+	if err != nil {
+		return nil, err
+	}
 	ongoingGames := new(OngoingGames)
 	_, err = c.do(req, &ongoingGames)
 	if err != nil {

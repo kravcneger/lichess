@@ -63,7 +63,6 @@ func (c *Client) GetBoardGameState(game_id string) (*[]BoardGameState, error) {
 	return boardGameState, err
 }
 
-// Will return profile information
 func (c *Client) MakeBoardMove(board_id string, move string) (*Ok, error) {
 	ok := new(Ok)
 	req, err := c.newRequest("POST", fmt.Sprintf("/api/board/game/%s/move/%s", board_id, move), nil)

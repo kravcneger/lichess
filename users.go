@@ -2,8 +2,6 @@ package lichess
 
 import (
 	"fmt"
-	"log"
-	"os"
 )
 
 type UserRealTimeStatus struct {
@@ -232,7 +230,9 @@ type PlayerHistory struct {
 
 func (c *Client) GetUserPublicData(user_name string) (*User, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s", user_name), nil)
-	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+	if err != nil {
+		return nil, err
+	}
 	user := new(User)
 	_, err = c.do(req, &user)
 	if err != nil {
@@ -253,7 +253,9 @@ type UserStatus struct {
 
 func (c *Client) GetRLUsersStatus(ids interface{}) (*[]UserStatus, error) {
 	req, err := c.newRequest("GET", "/api/users/status", nil)
-
+	if err != nil {
+		return nil, err
+	}
 	q := req.URL.Query()
 	q.Add("ids", fetchIds(ids))
 	req.URL.RawQuery = q.Encode()
@@ -270,11 +272,13 @@ func (c *Client) GetRLUsersStatus(ids interface{}) (*[]UserStatus, error) {
 func (c *Client) GetTopPlayers() (*TopPlayers, error) {
 	req, err := c.newRequest("GET", "/player", nil)
 
+	if err != nil {
+		return nil, err
+	}
 	players := new(TopPlayers)
 	_, err = c.do(req, &players)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return players, err
 }
@@ -283,12 +287,14 @@ func (c *Client) GetTopPlayers() (*TopPlayers, error) {
 func (c *Client) GetLeaderboard(nb int, prefType string) (*LeaderBoard, error) {
 	endpoint := fmt.Sprintf("/player/top/%d/%s", nb, prefType)
 	req, err := c.newRequest("GET", endpoint, nil)
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
 	leaderBoard := new(LeaderBoard)
 	_, err = c.do(req, &leaderBoard)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return leaderBoard, err
 }
@@ -296,12 +302,14 @@ func (c *Client) GetLeaderboard(nb int, prefType string) (*LeaderBoard, error) {
 // Gets Player information
 func (c *Client) GetPlayer(username string) (*User, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s", username), nil)
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
 	user := new(User)
 	_, err = c.do(req, &user)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return user, err
 }
@@ -309,12 +317,14 @@ func (c *Client) GetPlayer(username string) (*User, error) {
 // Gets player history
 func (c *Client) GetPlayerHistory(username string) (*PlayerHistory, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s/rating-history", username), nil)
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
 	history := new(PlayerHistory)
 	_, err = c.do(req, &history)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return history, err
 }
