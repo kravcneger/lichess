@@ -15,9 +15,14 @@
 
 - [X] Unit Testing
 
-## v1.0.3: [Merge]: Tournament api calls from [github.com/Christopher-MakeSchool/makeutility](github.com/Christopher-MakeSchool/makeutility)
+## v1.0.3: [Merge]: from @kravcneger
 
-<!-- ## v1.0.4:  -->
+- [X] Games
+- [ ] Board
+- [ ] Fetch User IDs
+- [ ] Unit Testing
+
+## v1.0.4: [Merge]: Tournament api calls from [github.com/Christopher-MakeSchool/makeutility](github.com/Christopher-MakeSchool/makeutility)
 
 <!-- ## v1.0.5:  -->
 

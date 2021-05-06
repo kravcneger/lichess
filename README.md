@@ -42,9 +42,16 @@ func main() {
 - [x] Accounts
 - [X] Users
 - [X] Unit Testing
+- [X] Games
+- [ ] Board
+- [ ] User IDs
+- [ ] Teams
 - [ ] Tournaments
 - [ ] Relations
-- [ ] Games
-- [ ] Teams
 - [ ] Challenges
 - [ ] Chessbot
+
+## Resources
+
+[Go: tests with HTML coverage report](https://kenanbek.medium.com/go-tests-with-html-coverage-report-f977da09552d)
+[Makefiles for Go Developers](https://tutorialedge.net/golang/makefiles-for-go-developers/)
