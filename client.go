@@ -11,14 +11,14 @@ import (
 )
 
 type Client struct {
-	BaseURL *url.URL
-	UserAgent string
-	APIKey string
+	BaseURL    *url.URL
+	UserAgent  string
+	APIKey     string
 	HttpClient *http.Client
 }
 
-func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error){
-	rel := &url.URL{Path:path}
+func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error) {
+	rel := &url.URL{Path: path}
 	u := c.BaseURL.ResolveReference(rel)
 
 	var buf io.ReadWriter
