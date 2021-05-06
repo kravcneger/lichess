@@ -13,7 +13,7 @@
 
 ### Part 2)
 
-- [ ] Unit Testing
+- [X] Unit Testing
 
 ## v1.0.3: [Merge]: Tournament api calls from [github.com/Christopher-MakeSchool/makeutility](github.com/Christopher-MakeSchool/makeutility)
 

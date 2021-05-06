@@ -41,7 +41,7 @@ func main() {
 
 - [x] Accounts
 - [X] Users
-- [ ] Unit Testing
+- [X] Unit Testing
 - [ ] Tournaments
 - [ ] Relations
 - [ ] Games
