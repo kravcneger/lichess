@@ -2,12 +2,11 @@ package lichess
 
 import (
 	"fmt"
-	"log"
-	"os"
 )
 
 type UserRealTimeStatus struct {
 }
+
 type TopGamePrefs struct {
 	Rating   int `json:"rating"`
 	Progress int `json:"progress"`
@@ -20,36 +19,47 @@ type BulletPrefs struct {
 type BlitzPrefs struct {
 	Blitz TopGamePrefs `json:"blitz"`
 }
+
 type RapidPrefs struct {
 	Rapid TopGamePrefs `json:"rapid"`
 }
+
 type ClassicalPrefs struct {
 	Classical TopGamePrefs `json:"classical"`
 }
+
 type UltraBulletPrefs struct {
 	UltraBullet TopGamePrefs `json:"ultraBullet"`
 }
+
 type CrazyhousePrefs struct {
 	Crazyhouse TopGamePrefs `json:"crazyhouse"`
 }
+
 type Chess960Prefs struct {
 	Chess960 TopGamePrefs `json:"chess960"`
 }
+
 type KingOfTheHillPrefs struct {
 	KingOfTheHill TopGamePrefs `json:"kingOfTheHill"`
 }
+
 type ThreeCheckPrefs struct {
 	ThreeCheck TopGamePrefs `json:"threeCheck"`
 }
+
 type AntichessPrefs struct {
 	Antichess TopGamePrefs `json:"antichess"`
 }
+
 type AtomicPrefs struct {
 	Atomic TopGamePrefs `json:"atomic"`
 }
+
 type HordePrefs struct {
 	Horde TopGamePrefs `json:"horde"`
 }
+
 type RacingKingsPrefs struct {
 	RacingKings TopGamePrefs `json:"racingKings"`
 }
@@ -152,6 +162,7 @@ type AtomicPlayer struct {
 	Patron   bool        `json:"patron"`
 	Online   bool        `json:"online"`
 }
+
 type HordePlayer struct {
 	ID       string     `json:"id"`
 	Username string     `json:"username"`
@@ -160,6 +171,7 @@ type HordePlayer struct {
 	Patron   bool       `json:"patron"`
 	Online   bool       `json:"online"`
 }
+
 type RacingKingsPlayer struct {
 	ID       string           `json:"id"`
 	Username string           `json:"username"`
@@ -230,21 +242,50 @@ type PlayerHistory struct {
 	History []PrefType
 }
 
-//TODO
-// Gets user realtime status
-//func (c *Client) GetUserRTStatus() (, error){
-//
-//}
+type UserStatus struct {
+	Id        string `json:"id"`
+	Name      string `json:"name"`
+	Title     string `json:"title"`
+	Online    bool   `json:"online"`
+	Playing   bool   `json:"playing"`
+	Streaming bool   `json:"streaming"`
+	Patron    bool   `json:"patron"`
+}
+
+func (c *Client) GetUserPublicData(user_name string) (*User, error) {
+	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s", user_name), nil)
+	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+	user := new(User)
+	_, err = c.do(req, &user)
+	if err != nil {
+		return nil, err
+	}
+	return user, err
+}
+
+func (c *Client) GetRLUsersStatus(ids string) (*[]UserStatus, error) {
+	req, err := c.newRequest("GET", "/api/users/status", nil)
+
+	q := req.URL.Query()
+	q.Add("ids", ids)
+	req.URL.RawQuery = q.Encode()
+
+	users_status := new([]UserStatus)
+	_, err = c.do(req, &users_status)
+	if err != nil {
+		return nil, err
+	}
+	return users_status, err
+}
 
 //Gets top 10 players for each game type
 func (c *Client) GetTopPlayers() (*TopPlayers, error) {
 	req, err := c.newRequest("GET", "/player", nil)
-	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+
 	players := new(TopPlayers)
 	_, err = c.do(req, &players)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return players, err
 }
@@ -253,12 +294,11 @@ func (c *Client) GetTopPlayers() (*TopPlayers, error) {
 func (c *Client) GetLeaderboard(nb int, prefType string) (*LeaderBoard, error) {
 	endpoint := fmt.Sprintf("/player/top/%d/%s", nb, prefType)
 	req, err := c.newRequest("GET", endpoint, nil)
-	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+
 	leaderBoard := new(LeaderBoard)
 	_, err = c.do(req, &leaderBoard)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return leaderBoard, err
 }
@@ -266,25 +306,23 @@ func (c *Client) GetLeaderboard(nb int, prefType string) (*LeaderBoard, error) {
 // Gets Player information
 func (c *Client) GetPlayer(username string) (*User, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s", username), nil)
-	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+
 	user := new(User)
 	_, err = c.do(req, &user)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return user, err
 }
 
-// // Gets player history
-// func (c *Client) GetPlayerHistory(username string) (*PlayerHistory, error){
-// 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s/rating-history", username), nil)
-// 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
-// 	history := new(User)
-// 	_, err = c.do(req, &user)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 		os.Exit(1)
-// 	}
-// 	return user, err
-// }
+// Gets player history
+func (c *Client) GetPlayerHistory(username string) (*PlayerHistory, error) {
+	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s/rating-history", username), nil)
+
+	history := new(PlayerHistory)
+	_, err = c.do(req, &history)
+	if err != nil {
+		return nil, err
+	}
+	return history, err
+}

@@ -6,6 +6,15 @@
 
 ## v1.0.2: [Merge]: Some revision from @kravcneger
 
+### Part 1)
+
+- [x] Accounts
+- [X] Users
+
+### Part 2)
+
+- [ ] Unit Testing
+
 ## v1.0.3: [Merge]: Tournament api calls from [github.com/Christopher-MakeSchool/makeutility](github.com/Christopher-MakeSchool/makeutility)
 
 <!-- ## v1.0.4:  -->

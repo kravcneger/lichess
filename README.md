@@ -40,11 +40,11 @@ func main() {
 ### Todo
 
 - [x] Accounts
+- [X] Users
 - [ ] Unit Testing
-- [ ] Users
+- [ ] Tournaments
 - [ ] Relations
 - [ ] Games
 - [ ] Teams
 - [ ] Challenges
 - [ ] Chessbot
-- [ ] Tournaments
