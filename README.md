@@ -43,7 +43,7 @@ func main() {
 - [X] Users
 - [X] Unit Testing
 - [X] Games
-- [ ] Board
+- [X] Board
 - [ ] User IDs
 - [ ] Teams
 - [ ] Tournaments

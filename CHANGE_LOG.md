@@ -18,7 +18,7 @@
 ## v1.0.3: [Merge]: from @kravcneger
 
 - [X] Games
-- [ ] Board
+- [X] Board
 - [ ] Fetch User IDs
 - [ ] Unit Testing
 
