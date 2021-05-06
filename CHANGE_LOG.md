@@ -19,7 +19,7 @@
 
 - [X] Games
 - [X] Board
-- [ ] Fetch User IDs
+- [X] Fetch User IDs
 - [ ] Unit Testing
 
 ## v1.0.4: [Merge]: Tournament api calls from [github.com/Christopher-MakeSchool/makeutility](github.com/Christopher-MakeSchool/makeutility)
