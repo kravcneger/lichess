@@ -60,6 +60,5 @@ func (c *Client) do(req *http.Request,
 	}
 	defer resp.Body.Close()
 	err = json.NewDecoder(resp.Body).Decode(v)
-
 	return resp, err
 }

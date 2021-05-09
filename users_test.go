@@ -46,5 +46,4 @@ func TestGetRLUsersStatus(t *testing.T) {
 	assert.Equal(t, 3, len(*user_statuses))
 	assert.Nil(t, err)
 	assert.EqualValues(t, "peter", (*user_statuses)[1].Id)
-
 }

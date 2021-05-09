@@ -6,6 +6,7 @@ import (
 
 type UserRealTimeStatus struct {
 }
+
 type TopGamePrefs struct {
 	Rating   int `json:"rating"`
 	Progress int `json:"progress"`
@@ -18,36 +19,47 @@ type BulletPrefs struct {
 type BlitzPrefs struct {
 	Blitz TopGamePrefs `json:"blitz"`
 }
+
 type RapidPrefs struct {
 	Rapid TopGamePrefs `json:"rapid"`
 }
+
 type ClassicalPrefs struct {
 	Classical TopGamePrefs `json:"classical"`
 }
+
 type UltraBulletPrefs struct {
 	UltraBullet TopGamePrefs `json:"ultraBullet"`
 }
+
 type CrazyhousePrefs struct {
 	Crazyhouse TopGamePrefs `json:"crazyhouse"`
 }
+
 type Chess960Prefs struct {
 	Chess960 TopGamePrefs `json:"chess960"`
 }
+
 type KingOfTheHillPrefs struct {
 	KingOfTheHill TopGamePrefs `json:"kingOfTheHill"`
 }
+
 type ThreeCheckPrefs struct {
 	ThreeCheck TopGamePrefs `json:"threeCheck"`
 }
+
 type AntichessPrefs struct {
 	Antichess TopGamePrefs `json:"antichess"`
 }
+
 type AtomicPrefs struct {
 	Atomic TopGamePrefs `json:"atomic"`
 }
+
 type HordePrefs struct {
 	Horde TopGamePrefs `json:"horde"`
 }
+
 type RacingKingsPrefs struct {
 	RacingKings TopGamePrefs `json:"racingKings"`
 }
@@ -150,6 +162,7 @@ type AtomicPlayer struct {
 	Patron   bool        `json:"patron"`
 	Online   bool        `json:"online"`
 }
+
 type HordePlayer struct {
 	ID       string     `json:"id"`
 	Username string     `json:"username"`
@@ -158,6 +171,7 @@ type HordePlayer struct {
 	Patron   bool       `json:"patron"`
 	Online   bool       `json:"online"`
 }
+
 type RacingKingsPlayer struct {
 	ID       string           `json:"id"`
 	Username string           `json:"username"`
